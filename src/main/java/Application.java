@@ -10,22 +10,38 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws SQLException {
-        final String user = "postgres";
-        final String password = "469841";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            EmployeeDAO employeeDAO = new EmployeeDAOImpl(connection);
-            List<Employee> employeeList = employeeDAO.getAllEmployees();
-            for (Employee em : employeeList) {
-                System.out.println(em);
-            }
-            employeeDAO.deleteById(2);
-            employeeDAO.updateById(5, 25);
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+//        Employee employee1 = new Employee(10,"Dan","Kim","man",22,7);
+//        employeeDAO.create(employee1);
+//        employeeDAO.update(new Employee(10, "Dan","Kim","man",33,7));
+//        System.out.println(employeeDAO.getById(14));
+//        List<Employee> list = employeeDAO.getAllEmployees();
+//        list.stream().forEach(System.out::println);
+        employeeDAO.delete(new Employee(9,"Danny","Kim","man",17,5));
 
-            Employee employee = new Employee(14, "Tom", "Kolins", "man", 44, new City(4));
-            employeeDAO.create(employee);
-            System.out.println(employeeDAO.getById(7));
-        }
     }
 }
 
+
+
+
+
+//        final String user = "postgres";
+//        final String password = "469841";
+//        final String url = "jdbc:postgresql://localhost:5432/skypro";
+//        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+//            EmployeeDAO employeeDAO = new EmployeeDAOImpl(connection);
+//            List<Employee> employeeList = employeeDAO.getAllEmployees();
+//            for (Employee em : employeeList) {
+//                System.out.println(em);
+//            }
+//            employeeDAO.deleteById(2);
+//            employeeDAO.updateById(5, 25);
+//
+//            Employee employee = new Employee(14, "Tom", "Kolins", "man", 44, new City(4));
+//            employeeDAO.create(employee);
+//            System.out.println(employeeDAO.getById(7));
+//        }
+//    }
+//}
+//
