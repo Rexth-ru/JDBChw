@@ -1,20 +1,34 @@
 package model;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
+
+@Entity
+@Table(name = "city")
 public class City {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
     private int cityId;
+    @Column(name = "city_name")
     private String cityName;
+    @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+    private List<Employee> employees;
+
+    public City() {
+    }
 
     public City(int cityId) {
         this.cityId = cityId;
     }
 
-    public City(int cityId, String cityName) {
-        this.cityId = cityId;
-        this.cityName = cityName;
+    public City(String cityName) {
+       this.cityName = cityName;
     }
 
-    public City(String cityName) {
-        this.cityName = cityName;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public int getCityId() {
@@ -34,10 +48,23 @@ public class City {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+        City city = (City) o;
+        return getCityId() == city.getCityId() && Objects.equals(getCityName(), city.getCityName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCityId(), getCityName());
+    }
+
+    @Override
     public String toString() {
         return "City{" +
-                "city_id=" + cityId +
-                ", city_name='" + cityName + '\'' +
+                "cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
                 '}';
     }
 }

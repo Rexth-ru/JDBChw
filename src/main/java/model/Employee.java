@@ -18,19 +18,18 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int city;
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "city_id")
+   private City city;
 
     public Employee() {
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int city) {
-        this.id = id;
+    public Employee(String firstName, String lastName, String gender, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.city = city;
     }
 
     public int getId() {
@@ -73,11 +72,11 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
@@ -86,7 +85,7 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getId() == employee.getId() && getAge() == employee.getAge() && getCity() == employee.getCity() && Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getLastName(), employee.getLastName()) && Objects.equals(getGender(), employee.getGender());
+        return getId() == employee.getId() && getAge() == employee.getAge() && Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getLastName(), employee.getLastName()) && Objects.equals(getGender(), employee.getGender()) && Objects.equals(getCity(), employee.getCity());
     }
 
     @Override
