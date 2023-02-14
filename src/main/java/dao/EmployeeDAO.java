@@ -10,6 +10,4 @@ public interface EmployeeDAO {
     List<Employee> getAllEmployees();
     void updateById(int id, int age);
     void deleteById(int id);
-
 }
-
