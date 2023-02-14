@@ -16,7 +16,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public EmployeeDAOImpl(Connection connection) {
         this.connection = connection;
     }
-
+// Creating (adding) an Employee entity to a table
     @Override
     public void create(Employee employee) {
         try (PreparedStatement statement = connection.prepareStatement(
@@ -32,7 +32,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             throw new RuntimeException(e);
         }
     }
-
+//Getting a specific Employee object by id
     @Override
     public Employee getById(int id) {
         Employee employee = new Employee();
@@ -53,7 +53,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
         return employee;
     }
-
+//Getting a list of all Employee objects from the database
     @Override
     public List<Employee> getAllEmployees() {
         List<Employee> employees = new ArrayList<>();
@@ -74,7 +74,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
         return employees;
     }
-
+//Changing a specific Employee object in the database by id
     @Override
     public void updateById(int id, int age) {
         try (PreparedStatement statement = connection.prepareStatement("update employee set age = ? where id =?")) {
@@ -87,7 +87,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
 
     }
-
+//Deleting a specific Employee object from the database by id
     @Override
     public void deleteById(int id) {
         try (PreparedStatement statement = connection.prepareStatement("delete from employee where employee.id=?")) {
