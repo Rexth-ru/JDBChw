@@ -13,6 +13,7 @@ public class City {
     private int cityId;
     @Column(name = "city_name")
     private String cityName;
+    //full cascading
     @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
     private List<Employee> employees;
 
