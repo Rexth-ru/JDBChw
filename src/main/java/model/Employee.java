@@ -18,6 +18,7 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
+//Link the entities together so that there can be several employees from one city, and one employee from only one city
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "city_id")
    private City city;
