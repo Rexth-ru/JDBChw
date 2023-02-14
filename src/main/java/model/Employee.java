@@ -32,7 +32,6 @@ public class Employee {
         this.age = age;
         this.city = city;
     }
-
     public int getId() {
         return id;
     }
